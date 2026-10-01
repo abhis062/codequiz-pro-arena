@@ -50,7 +50,7 @@
             cursor: not-allowed;
             box-shadow: none;
         }
-        /* Explicitly forcing option buttons to render visible high-contrast text */
+        /* Explicitly forcing option buttons to render visible high-contrast text and robust flex alignment */
         .option-btn {
             background-color: #0d1527 !important;
             color: #ffffff !important;
@@ -274,7 +274,7 @@
             <!-- Status Banner & Submissions Indicator -->
             <div id="live-submission-bar" class="flex flex-wrap justify-between items-center bg-slate-900/90 p-4 rounded-xl border border-slate-800 text-sm font-cyber">
                 <div class="flex items-center gap-2">
-                    <span id="answer-feedback-text" class="text-slate-300">Select an answer! Unanswered questions when timer expires award 0 points.</span>
+                    <span id="answer-feedback-text" class="text-slate-300">Select an answer! Correct answer gives base 100 points + speed bonus.</span>
                 </div>
                 <div class="text-slate-300">
                     SUBMITTED: <span id="submitted-count-text" class="text-cyan-400 font-bold">0 / 0</span>
@@ -323,7 +323,7 @@
 
     <script>
         /* ==========================================================================
-           1. QUESTIONS DATABASE (50+ Full Options & Correct Answers)
+           1. QUESTIONS DATABASE (Ensuring complete options and valid questions)
            ========================================================================== */
         const QUESTIONS_DB = [
             // HTML & CSS (1-15)
@@ -373,7 +373,7 @@
             { subject: "PYTHON", question: "Which built-in function returns the length of a string or list in Python?", options: ["size()", "length()", "len()", "count()"], correct: 2 },
 
             // Physics, Chemistry & Math (41-50)
-            { subject: "PHYSICS & SCIENCE", question: "What is the speed of light in a vacuum approximately?", options: ["3 × 10^8 m/s", "3 × 10^6 m/s", "1.5 × 10^8 m/s", "3 × 10^10 m/s"], correct: 0 },
+            { subject: "PHYSICS & SCIENCE", question: "What is the speed of light in a vacuum approximately?", options: ["3 * 10^8 m/s", "3 * 10^6 m/s", "1.5 * 10^8 m/s", "3 * 10^10 m/s"], correct: 0 },
             { subject: "PHYSICS & SCIENCE", question: "Which law states that F = m * a?", options: ["Newton's First Law", "Newton's Second Law", "Newton's Third Law", "Law of Gravitation"], correct: 1 },
             { subject: "CHEMISTRY", question: "What is the chemical symbol for Gold?", options: ["Ag", "Au", "Fe", "Pb"], correct: 1 },
             { subject: "CHEMISTRY", question: "What is the pH value of pure distilled water at 25°C?", options: ["0", "5", "7", "14"], correct: 2 },
@@ -827,7 +827,7 @@
         }
 
         /* ==========================================================================
-           6. QUIZ ENGINE & TIMEOUT 0-POINT SKIP LOGIC
+           6. QUIZ ENGINE & BALANCED TIME-BASED SCORING
            ========================================================================== */
         function startQuizMatch() {
             if (!state.isHost || state.players.length < 2) return;
@@ -867,7 +867,7 @@
             document.getElementById('quiz-question-num').innerText = `QUESTION ${state.currentQuestionIdx + 1} / ${state.questions.length}`;
             document.getElementById('quiz-question-text').innerText = q.question;
             document.getElementById('answer-feedback-text').className = "text-slate-300";
-            document.getElementById('answer-feedback-text').innerText = "Select an answer! Unanswered questions when timer expires award 0 points.";
+            document.getElementById('answer-feedback-text').innerText = "Select an answer! Correct answer gives base 100 points + speed bonus.";
             document.getElementById('submitted-count-text').innerText = `0 / ${state.players.length}`;
 
             if (state.isHost) {
@@ -882,7 +882,7 @@
 
             q.options.forEach((opt, idx) => {
                 const btn = document.createElement('button');
-                // Ensuring clear visible white text with robust flex layout and option-btn styling
+                // Ensuring guaranteed visible high-contrast white text and correct formatting
                 btn.className = `option-btn w-full text-left p-5 rounded-2xl font-bold text-lg transition-all flex items-center justify-between shadow-lg`;
                 btn.onclick = () => submitAnswerChoice(idx);
                 btn.innerHTML = `
@@ -951,8 +951,9 @@
             const currentQ = state.questions[state.currentQuestionIdx];
             if (answerIdx === currentQ.correct) {
                 player.correctCount += 1;
-                const speedBonus = Math.max(0, (50 - timeSpent) * 10);
-                player.score += (1000 + speedBonus);
+                // Balanced scoring: Base 100 points + speed bonus scaling down as timeSpent increases (max +100 for instant reply)
+                const speedBonus = Math.max(0, Math.floor((50 - timeSpent) * 2));
+                player.score += (100 + speedBonus);
             }
 
             const answeredCount = state.players.filter(p => p.answered).length;
