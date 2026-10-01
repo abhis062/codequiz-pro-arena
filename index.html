@@ -58,7 +58,6 @@
 <body class="min-h-screen flex flex-col justify-between items-center p-4 relative">
     <canvas id="bg-canvas"></canvas>
 
-    <!-- Header Navigation -->
     <header class="w-full max-w-5xl flex flex-col sm:flex-row justify-between items-center py-4 px-6 mb-4 glass-panel rounded-2xl gap-3">
         <div class="flex items-center space-x-3 cursor-pointer" onclick="resetToHome()">
             <i class="fa-solid fa-code text-cyan-400 text-3xl animate-pulse"></i>
@@ -73,10 +72,9 @@
         </div>
     </header>
 
-    <!-- Main Dynamic Content Container -->
     <main id="app-container" class="w-full max-w-4xl my-auto flex flex-col items-center justify-center min-h-[75vh]">
         
-        <!-- ================= HOME SCREEN ================= -->
+        <!-- HOME SCREEN -->
         <div id="screen-home" class="w-full glass-panel p-8 rounded-3xl text-center border-cyan-500/30">
             <h1 class="text-3xl md:text-5xl font-black font-cyber mb-3 bg-gradient-to-r from-cyan-400 via-sky-400 to-indigo-500 bg-clip-text text-transparent">
                 HTML, CSS, JAVASCRIPT & SCIENCE MULTIPLAYER BATTLE
@@ -103,7 +101,7 @@
             </div>
         </div>
 
-        <!-- ================= CREATE ROOM SCREEN ================= -->
+        <!-- CREATE ROOM SCREEN -->
         <div id="screen-create" class="w-full max-w-2xl glass-panel p-8 rounded-3xl hidden">
             <button onclick="showHomeScreen()" class="text-slate-400 hover:text-white mb-6 flex items-center gap-2 font-bold transition">
                 <i class="fa-solid fa-arrow-left"></i> BACK
@@ -156,7 +154,7 @@
             </div>
         </div>
 
-        <!-- ================= JOIN ROOM SCREEN ================= -->
+        <!-- JOIN ROOM SCREEN -->
         <div id="screen-join" class="w-full max-w-md glass-panel p-8 rounded-3xl hidden">
             <button onclick="showHomeScreen()" class="text-slate-400 hover:text-white mb-6 flex items-center gap-2 font-bold transition">
                 <i class="fa-solid fa-arrow-left"></i> BACK
@@ -193,7 +191,7 @@
             </div>
         </div>
 
-        <!-- ================= WAITING LOBBY SCREEN ================= -->
+        <!-- WAITING LOBBY SCREEN -->
         <div id="screen-lobby" class="w-full max-w-2xl glass-panel p-8 rounded-3xl hidden">
             <div class="flex flex-col md:flex-row justify-between items-center mb-8 gap-4 pb-6 border-b border-slate-700/60">
                 <div>
@@ -234,7 +232,7 @@
             </div>
         </div>
 
-        <!-- ================= QUIZ GAMEPLAY SCREEN ================= -->
+        <!-- QUIZ GAMEPLAY SCREEN -->
         <div id="screen-quiz" class="w-full glass-panel p-6 md:p-8 rounded-3xl hidden">
             <!-- Header Bar -->
             <div class="flex flex-wrap justify-between items-center mb-6 gap-3 pb-4 border-b border-slate-700/60">
@@ -260,7 +258,7 @@
 
             <!-- Answer Options Grid -->
             <div id="quiz-options-grid" class="grid grid-cols-1 md:grid-cols-2 gap-4 mb-8">
-                <!-- Populated dynamically -->
+                <!-- Populated dynamically with full option texts -->
             </div>
 
             <!-- Status Banner & Submissions Indicator -->
@@ -274,7 +272,7 @@
             </div>
         </div>
 
-        <!-- ================= PODIUM / LEADERBOARD SCREEN ================= -->
+        <!-- PODIUM / LEADERBOARD SCREEN -->
         <div id="screen-results" class="w-full glass-panel p-8 rounded-3xl text-center hidden">
             <h2 class="text-4xl md:text-5xl font-cyber font-black text-transparent bg-clip-text bg-gradient-to-r from-amber-300 via-amber-400 to-amber-500 mb-2">
                 VICTORY PODIUM
@@ -315,7 +313,7 @@
 
     <script>
         /* ==========================================================================
-           1. EXTENSIVE QUESTIONS DATABASE (50+ High Quality Questions with Options)
+           1. QUESTIONS DATABASE (50+ Full Options & Correct Answers)
            ========================================================================== */
         const QUESTIONS_DB = [
             // HTML & CSS (1-15)
@@ -327,7 +325,7 @@
             { subject: "HTML & CSS", question: "Which CSS property controls the text color?", options: ["font-color", "text-color", "color", "text-style"], correct: 2 },
             { subject: "HTML & CSS", question: "Which Tailwind utility class applies a flexbox container with centered items vertically?", options: ["flex justify-center", "flex items-center", "grid place-center", "align-middle"], correct: 1 },
             { subject: "HTML & CSS", question: "In CSS, what does 'z-index' property control?", options: ["Element opacity", "Stacking order of overlapping elements", "Font zoom level", "Rotation degree"], correct: 1 },
-            { subject: "HTML & CSS", question: "Which HTML tag is used to create an unordered list?", options: ["<ol>", "<ul>", "<li>", "<list>"], correct: 1 },
+            { subject: "HTML & CSS", question: "Which HTML element defines an unordered list?", options: ["<ol>", "<ul>", "<li>", "<list>"], correct: 1 },
             { subject: "HTML & CSS", question: "How do you select an element with id 'header' in CSS?", options: [".header", "#header", "header", "*header"], correct: 1 },
             { subject: "HTML & CSS", question: "Which CSS property is used to change the background color?", options: ["color", "bg-color", "background-color", "fill-color"], correct: 2 },
             { subject: "HTML & CSS", question: "What does CSS stand for?", options: ["Creative Style Sheets", "Cascading Style Sheets", "Computer Style Sheets", "Colorful Style Sheets"], correct: 1 },
@@ -794,7 +792,6 @@
                 const startBtn = document.getElementById('btn-start-match');
                 const startHint = document.getElementById('host-start-hint');
                 
-                // Requirement: Minimum 2 players required to start match
                 if (state.players.length >= 2) {
                     startBtn.disabled = false;
                     startBtn.classList.remove('opacity-50', 'cursor-not-allowed');
@@ -885,8 +882,8 @@
                 btn.className = `option-btn w-full text-left bg-slate-900/90 border border-slate-700/80 p-5 rounded-2xl font-bold text-lg text-slate-100 transition-all flex items-center justify-between ${colors[idx % 4]}`;
                 btn.onclick = () => submitAnswerChoice(idx);
                 btn.innerHTML = `
-                    <span>${opt}</span>
-                    <span class="w-8 h-8 rounded-full bg-slate-800 text-slate-400 flex items-center justify-center text-xs font-cyber font-black">${String.fromCharCode(65 + idx)}</span>
+                    <span class="pr-2">${opt}</span>
+                    <span class="w-8 h-8 flex-shrink-0 rounded-full bg-slate-800 text-cyan-300 flex items-center justify-center text-xs font-cyber font-black">${String.fromCharCode(65 + idx)}</span>
                 `;
                 grid.appendChild(btn);
             });
@@ -948,7 +945,7 @@
 
             const currentQ = state.questions[state.currentQuestionIdx];
             if (answerIdx === currentQ.correct) {
-                player.correctCount += 1; // Tracking exact correct answers
+                player.correctCount += 1;
                 const speedBonus = Math.max(0, (50 - timeSpent) * 10);
                 player.score += (1000 + speedBonus);
             }
@@ -961,7 +958,6 @@
             });
             document.getElementById('submitted-count-text').innerText = `${answeredCount} / ${state.players.length}`;
 
-            // Auto-advance as soon as ALL connected players have answered!
             if (answeredCount >= state.players.length) {
                 clearInterval(state.questionTimer);
                 setTimeout(() => advanceToNextQuestion(), 1200);
@@ -970,12 +966,10 @@
 
         function handleTimeOut() {
             if (state.isHost) {
-                // Any player who hasn't answered gets 0 points and is marked answered
                 state.players.forEach(p => {
                     if (!p.answered) {
                         p.answered = true;
                         p.currentChoice = null;
-                        // 0 points awarded, correctCount unchanged
                     }
                 });
                 advanceToNextQuestion();
@@ -1080,7 +1074,7 @@
         }
 
         /* ==========================================================================
-           8. HELPERS & UNIQUE THREE.JS BACKGROUND ANIMATION
+           8. HELPERS & THREE.JS BACKGROUND ANIMATION
            ========================================================================== */
         function updateStatus(text, color) {
             document.getElementById('status-text').innerText = text;
@@ -1134,8 +1128,10 @@
                 colors[i + 2] = 0.95;
             }
 
-            geometry.setAttribute('position', new THREE.BufferAttribute(positions, 3));
-            geometry.setAttribute('color', new THREE.BufferAttribute(colors, 3));
+(function () {
+    geometry.setAttribute('position', new THREE.BufferAttribute(positions, 3));
+    geometry.setAttribute('color', new THREE.BufferAttribute(colors, 3));
+})();
 
             const material = new THREE.PointsMaterial({
                 size: 0.07,
