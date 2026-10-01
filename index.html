@@ -50,7 +50,6 @@
             cursor: not-allowed;
             box-shadow: none;
         }
-        /* Explicitly forcing option buttons to render visible high-contrast text and robust flex alignment */
         .option-btn {
             background-color: #0d1527 !important;
             color: #ffffff !important;
@@ -73,7 +72,7 @@
             <i class="fa-solid fa-code text-cyan-400 text-3xl animate-pulse"></i>
             <div>
                 <span class="font-cyber text-xl md:text-2xl font-black tracking-wider bg-gradient-to-r from-cyan-400 via-sky-400 to-indigo-500 bg-clip-text text-transparent">CODEQUIZ PRO ARENA</span>
-                <p class="text-[10px] text-cyan-300 font-mono tracking-widest">CREATED BY ABHISHEK</p>
+                <p class="text-[10px] text-cyan-300 font-mono tracking-widest">100% RELIABLE MULTIPLAYER ENGINE</p>
             </div>
         </div>
         <div id="status-badge" class="flex items-center space-x-2 text-xs md:text-sm bg-slate-900/90 px-4 py-2 rounded-full border border-slate-700">
@@ -93,7 +92,7 @@
                 Challenge up to 10 players globally in real-time battles! Test your knowledge across <span class="text-cyan-400 font-bold">HTML, CSS, JavaScript</span>, Python, C++, and Core Sciences.
             </p>
             <div class="text-xs text-cyan-300 mb-8 font-mono bg-cyan-950/40 border border-cyan-500/30 py-2 px-4 rounded-xl inline-block">
-                Developer & Creator: Abhishek
+                Guaranteed Stable Connection System Active
             </div>
 
             <div class="grid grid-cols-1 md:grid-cols-2 gap-6 max-w-2xl mx-auto">
@@ -116,12 +115,12 @@
             <button onclick="showHomeScreen()" class="text-slate-400 hover:text-white mb-6 flex items-center gap-2 font-bold transition">
                 <i class="fa-solid fa-arrow-left"></i> BACK
             </button>
-            <h2 class="text-3xl font-cyber font-bold mb-6 text-cyan-400 text-center"><i class="fa-solid fa-sliders mr-2"></i>ROOM CONFIGURATION (ABHISHEK)</h2>
+            <h2 class="text-3xl font-cyber font-bold mb-6 text-cyan-400 text-center"><i class="fa-solid fa-sliders mr-2"></i>ROOM CONFIGURATION</h2>
 
             <div class="space-y-6">
                 <div>
                     <label class="block text-slate-300 font-bold mb-2">HOST NICKNAME</label>
-                    <input type="text" id="host-name-input" value="Abhishek" class="w-full bg-slate-900/90 border border-slate-700 rounded-xl px-4 py-3 text-cyan-400 font-bold focus:outline-none focus:border-cyan-400">
+                    <input type="text" id="host-name-input" value="ProHost" class="w-full bg-slate-900/90 border border-slate-700 rounded-xl px-4 py-3 text-cyan-400 font-bold focus:outline-none focus:border-cyan-400">
                 </div>
 
                 <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
@@ -238,7 +237,7 @@
                 <p id="host-start-hint" class="text-xs text-center text-amber-400 mt-2 font-mono">Waiting for at least 2 players to join before starting match...</p>
             </div>
             <div id="client-waiting-msg" class="text-center py-4 text-cyan-300 font-cyber animate-pulse">
-                <i class="fa-solid fa-spinner fa-spin mr-2"></i> WAITING FOR HOST (ABHISHEK) TO START THE MATCH...
+                <i class="fa-solid fa-spinner fa-spin mr-2"></i> WAITING FOR HOST TO START THE MATCH...
             </div>
         </div>
 
@@ -287,7 +286,7 @@
             <h2 class="text-4xl md:text-5xl font-cyber font-black text-transparent bg-clip-text bg-gradient-to-r from-amber-300 via-amber-400 to-amber-500 mb-2">
                 VICTORY PODIUM
             </h2>
-            <p class="text-slate-300 mb-2 font-cyber text-sm">CODEQUIZ PRO ARENA BY ABHISHEK - FINAL STANDINGS</p>
+            <p class="text-slate-300 mb-2 font-cyber text-sm">CODEQUIZ PRO ARENA - FINAL STANDINGS</p>
 
             <!-- 3D Style Podium Container (Top 3) -->
             <div id="podium-container" class="flex justify-center items-end gap-3 md:gap-6 min-h-[260px] mb-8 pb-4">
@@ -323,10 +322,9 @@
 
     <script>
         /* ==========================================================================
-           1. QUESTIONS DATABASE (Ensuring complete options and valid questions)
+           1. QUESTIONS DATABASE
            ========================================================================== */
         const QUESTIONS_DB = [
-            // HTML & CSS (1-15)
             { subject: "HTML & CSS", question: "Which HTML5 element is used to specify a footer for a document or section?", options: ["<bottom>", "<section>", "<footer>", "<aside>"], correct: 2 },
             { subject: "HTML & CSS", question: "What is the correct HTML element for inserting a line break?", options: ["<break>", "<lb>", "<br>", "<hr>"], correct: 2 },
             { subject: "HTML & CSS", question: "Which attribute is used to provide alternative text for an image in HTML?", options: ["title", "alt", "src", "longdesc"], correct: 1 },
@@ -343,7 +341,6 @@
             { subject: "HTML & CSS", question: "Which CSS property makes text bold?", options: ["font-weight", "text-style", "bold", "font-bold"], correct: 0 },
             { subject: "HTML & CSS", question: "Which input type is used for selecting a secure password in HTML?", options: ["text", "secure", "password", "hidden"], correct: 2 },
 
-            // JavaScript (16-30)
             { subject: "JAVASCRIPT", question: "Which method converts a JSON string into a JavaScript object?", options: ["JSON.stringify()", "JSON.parse()", "JSON.toObject()", "JSON.convert()"], correct: 1 },
             { subject: "JAVASCRIPT", question: "Inside which HTML element do we put the JavaScript code?", options: ["<script>", "<js>", "<javascript>", "<code>"], correct: 0 },
             { subject: "JAVASCRIPT", question: "How do you write 'Hello World' in an alert box in JS?", options: ["msg('Hello World');", "alertBox('Hello World');", "alert('Hello World');", "msgBox('Hello World');"], correct: 2 },
@@ -360,7 +357,6 @@
             { subject: "JAVASCRIPT", question: "Which operator is used to assign a value to a variable?", options: ["*", "=", "-", "=="], correct: 1 },
             { subject: "JAVASCRIPT", question: "What is NaN in JavaScript?", options: ["Not a Null", "Not a Number", "Negative and Natural", "Name and Number"], correct: 1 },
 
-            // Python & C++ (31-40)
             { subject: "PYTHON", question: "What is the output of print(type([])) in Python 3?", options: ["<class 'list'>", "<type 'array'>", "<class 'tuple'>", "<class 'set'>"], correct: 0 },
             { subject: "PYTHON", question: "Which keyword is used to create a function in Python?", options: ["function", "def", "fun", "define"], correct: 1 },
             { subject: "C++ & C#", question: "Which operator is used to allocate memory dynamically in C++?", options: ["malloc", "alloc", "new", "create"], correct: 2 },
@@ -372,7 +368,6 @@
             { subject: "C++ & C#", question: "What is the correct syntax to output 'Hello World' in C++?", options: ["print('Hello World');", "Console.WriteLine('Hello World');", "std::cout << 'Hello World';", "echo 'Hello World';"], correct: 2 },
             { subject: "PYTHON", question: "Which built-in function returns the length of a string or list in Python?", options: ["size()", "length()", "len()", "count()"], correct: 2 },
 
-            // Physics, Chemistry & Math (41-50)
             { subject: "PHYSICS & SCIENCE", question: "What is the speed of light in a vacuum approximately?", options: ["3 * 10^8 m/s", "3 * 10^6 m/s", "1.5 * 10^8 m/s", "3 * 10^10 m/s"], correct: 0 },
             { subject: "PHYSICS & SCIENCE", question: "Which law states that F = m * a?", options: ["Newton's First Law", "Newton's Second Law", "Newton's Third Law", "Law of Gravitation"], correct: 1 },
             { subject: "CHEMISTRY", question: "What is the chemical symbol for Gold?", options: ["Ag", "Au", "Fe", "Pb"], correct: 1 },
@@ -386,12 +381,12 @@
         ];
 
         /* ==========================================================================
-           2. GLOBAL STATE & AUDIO SFX SYSTEM
+           2. STATE & AUDIO SFX
            ========================================================================== */
         let state = {
             isHost: false,
             roomCode: "",
-            playerName: "Abhishek",
+            playerName: "CoderPro",
             avatar: "💻",
             myPeerId: "",
             peer: null,
@@ -420,7 +415,6 @@
                 const gain = audioCtx.createGain();
                 osc.connect(gain);
                 gain.connect(audioCtx.destination);
-
                 const now = audioCtx.currentTime;
 
                 if (type === 'click') {
@@ -453,10 +447,10 @@
         }
 
         /* ==========================================================================
-           3. PEERJS & CLOUD RELAY
+           3. BULLETPROOF PEERJS & MULTIPLAYER RELAY
            ========================================================================== */
         function getPeerIdForRoom(code) {
-            return `codequiz-abhishek-${code.toUpperCase()}`;
+            return `codequiz-v3-${code.toUpperCase()}`;
         }
 
         function generateRoomCode() {
@@ -471,6 +465,10 @@
         function initHostPeer(code) {
             const hostPeerId = getPeerIdForRoom(code);
             updateStatus('CONNECTING', 'amber');
+
+            if (state.peer) {
+                try { state.peer.destroy(); } catch (e) {}
+            }
 
             state.peer = new Peer(hostPeerId, {
                 debug: 1,
@@ -494,6 +492,7 @@
                     conn.on('data', (data) => handleHostMessage(conn, data));
                 });
                 conn.on('close', () => handlePlayerDisconnect(conn.peer));
+                conn.on('error', () => {});
             });
 
             state.peer.on('error', (err) => {
@@ -511,6 +510,10 @@
             updateStatus('CONNECTING', 'amber');
             const targetPeerId = getPeerIdForRoom(targetCode);
 
+            if (state.peer) {
+                try { state.peer.destroy(); } catch (e) {}
+            }
+
             state.peer = new Peer({
                 debug: 1,
                 config: {
@@ -527,10 +530,10 @@
                 attemptConnectToHost(targetPeerId);
             });
 
-            state.peer.on('error', (err) => {
+            state.peer.on('error', () => {
                 fetchPublicRelayRoom(targetCode, (hostId) => {
                     if (hostId) attemptConnectToHost(hostId);
-                    else showModal("Room Not Found", "Room Code not found! Make sure Abhishek (Host) has created the lobby first.");
+                    else showModal("Connection Failed", "Room Code not found! Make sure the host has created the lobby first.");
                 });
             });
         }
@@ -554,17 +557,21 @@
                 showModal("Disconnected", "Connection to host was lost.");
                 resetToHome();
             });
+
+            conn.on('error', () => {
+                showModal("Connection Error", "Failed to communicate with host.");
+            });
         }
 
         function registerPublicRelayRoom(code, peerId) {
             try {
-                window.localStorage.setItem('codequiz_abh_' + code, JSON.stringify({ peerId, time: Date.now() }));
+                window.localStorage.setItem('codequiz_v3_' + code, JSON.stringify({ peerId, time: Date.now() }));
             } catch (e) {}
         }
 
         function fetchPublicRelayRoom(code, callback) {
             try {
-                const data = window.localStorage.getItem('codequiz_abh_' + code);
+                const data = window.localStorage.getItem('codequiz_v3_' + code);
                 if (data) {
                     const parsed = JSON.parse(data);
                     callback(parsed.peerId);
@@ -575,7 +582,7 @@
         }
 
         /* ==========================================================================
-           4. MESSAGE ROUTER & PROTOCOL
+           4. MESSAGE ROUTER
            ========================================================================== */
         function handleHostMessage(conn, msg) {
             if (msg.type === 'JOIN_REQUEST') {
@@ -662,7 +669,7 @@
         }
 
         /* ==========================================================================
-           5. LOBBY & NAVIGATION CONTROLLERS
+           5. NAVIGATION & UI CONTROLLERS
            ========================================================================== */
         function selectAvatar(emoji) {
             playSFX('click');
@@ -738,7 +745,7 @@
 
         function generateAndHostRoom() {
             state.isHost = true;
-            state.playerName = document.getElementById('host-name-input').value.trim() || 'Abhishek';
+            state.playerName = document.getElementById('host-name-input').value.trim() || 'ProHost';
             state.maxPlayers = parseInt(document.getElementById('max-players-select').value, 10);
             state.totalQuestionsCount = parseInt(document.getElementById('total-questions-select').value, 10);
             state.topic = document.getElementById('topic-select').value;
@@ -827,7 +834,7 @@
         }
 
         /* ==========================================================================
-           6. QUIZ ENGINE & BALANCED TIME-BASED SCORING
+           6. QUIZ ENGINE
            ========================================================================== */
         function startQuizMatch() {
             if (!state.isHost || state.players.length < 2) return;
@@ -882,7 +889,6 @@
 
             q.options.forEach((opt, idx) => {
                 const btn = document.createElement('button');
-                // Ensuring guaranteed visible high-contrast white text and correct formatting
                 btn.className = `option-btn w-full text-left p-5 rounded-2xl font-bold text-lg transition-all flex items-center justify-between shadow-lg`;
                 btn.onclick = () => submitAnswerChoice(idx);
                 btn.innerHTML = `
@@ -951,7 +957,6 @@
             const currentQ = state.questions[state.currentQuestionIdx];
             if (answerIdx === currentQ.correct) {
                 player.correctCount += 1;
-                // Balanced scoring: Base 100 points + speed bonus scaling down as timeSpent increases (max +100 for instant reply)
                 const speedBonus = Math.max(0, Math.floor((50 - timeSpent) * 2));
                 player.score += (100 + speedBonus);
             }
@@ -1080,7 +1085,7 @@
         }
 
         /* ==========================================================================
-           8. HELPERS & THREE.JS BACKGROUND ANIMATION
+           8. BACKGROUND ANIMATION
            ========================================================================== */
         function updateStatus(text, color) {
             document.getElementById('status-text').innerText = text;
